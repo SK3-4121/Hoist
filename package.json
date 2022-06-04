@@ -1,0 +1,12 @@
+{
+  "name": "hoist",
+  "version": "1.0.0",
+  "description": "Movie hosting made easy!",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js pause",
+    "run": "node index.js"
+  },
+  "author": "Max",
+  "license": "ISC"
+}
