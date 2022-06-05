@@ -2,14 +2,17 @@
 // index.js
 // Made by Max on 6/2/2022 at 10:19
 
+const urlExist = require("url-exists");
 const fs = require("fs")
 const express = require('express')
 const router = express.Router();
 const createError = require('http-errors')
 const path = require("path")
 const { exit } = require("process")
+const lineReader = require('line-reader');
 const app = express()
 const port = 24080
+const repos = [""]
 
 console.log('[+]: Thank you for using Hoist! Hope you enjoy it.')
 
@@ -17,12 +20,20 @@ app.use(express.urlencoded({ extended: true }))
 
 function randomString(length) {
     var result = ''
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     var charactersLength = characters.length
     for ( var i = 0; i < length; i++ ) {
        result += characters.charAt(Math.floor(Math.random() * charactersLength))
     }
     return result
+}
+
+function wait(sec) {
+    const date = Date.now()
+    let currentDate = null
+    do {
+      currentDate = Date.now()
+    } while (currentDate - date < sec*1000)
 }
 
 function MirrorFiles() {
@@ -72,7 +83,10 @@ app.get("/home", (req, res) => {
     var pagesource = fs.readFileSync(page)
     let externalscript = `\n<script>
     const con = document.getElementById("video-container");\n`
+    let externalscriptrepo = `\n<script>
+    const conr = document.getElementById("repo-container");\n`
 
+    MirrorFiles()
     var hostvideosFolder = __dirname + "/host/videos/"
     if (fs.existsSync(hostvideosFolder)) {
         fs.readdir(hostvideosFolder, (err, files) => {
@@ -90,8 +104,24 @@ app.get("/home", (req, res) => {
                 con.appendChild(${ButtonRandomName})`
             })
             
-            // console.log(externalscript + "</script>")
-            res.send(pagesource + externalscript + "\n</script>")
+            const allFileContents = fs.readFileSync(__dirname + "/host/repos.data", 'utf-8')
+            allFileContents.split(/\r?\n/).forEach(line =>  {
+                // console.log(externalscriptrepo)
+                const ButtonRandomName = randomString(24)
+                externalscriptrepo = `${externalscriptrepo}\n
+                const ${ButtonRandomName} = document.createElement('button')
+                ${ButtonRandomName}.innerText = '${line}'
+                ${ButtonRandomName}.id = '${line}-Button'
+                
+                ${ButtonRandomName}.addEventListener("click", function() {
+                    window.location.href = "${line}";
+                })
+                
+                conr.appendChild(${ButtonRandomName})`
+            })
+
+            externalscriptrepo = `${externalscriptrepo}\n</script>`
+            res.send(pagesource + externalscript + "\n</script>" + externalscriptrepo)
         })
     }
 })
