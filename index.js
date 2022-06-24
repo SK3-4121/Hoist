@@ -40,7 +40,7 @@ function MirrorFiles() {
     console.log("[/]: Setting up /host/ directory")
     try {
         var hostFolder = __dirname + "/host/"
-        // var mirrorFolder = __dirname + "/site/web/mirror/" 
+        // var mirrorFolder = __dirname + "/public/web/mirror/" 
         exports.hostFolder = hostFolder
         // exports.mirrorFolder = mirrorFolder
 
@@ -72,19 +72,17 @@ function MirrorFiles() {
 
 MirrorFiles()
 
-app.use(express.static(__dirname + '/site'))
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
     res.redirect("/home")
 })
 
 app.get("/home", (req, res) => {
-    var page = __dirname + "/site/web/index.html"
+    var page = __dirname + "/public/web/index.html"
     var pagesource = fs.readFileSync(page)
-    let externalscript = `\n<script>
-    const con = document.getElementById("video-container");\n`
-    let externalscriptrepo = `\n<script>
-    const conr = document.getElementById("repo-container");\n`
+    let externalscript = ``
+    let externalscriptrepo = ``
 
     MirrorFiles()
     var hostvideosFolder = __dirname + "/host/videos/"
@@ -93,35 +91,27 @@ app.get("/home", (req, res) => {
             files.forEach(file => {
                 const ButtonRandomName = randomString(24)
                 externalscript = `${externalscript}\n
-                const ${ButtonRandomName} = document.createElement('button')
-                ${ButtonRandomName}.innerText = '${file}'
-                ${ButtonRandomName}.id = '${file}-Button'
-                
-                ${ButtonRandomName}.addEventListener("click", function() {
-                    window.location.href = "${file}";
-                })
-                
-                con.appendChild(${ButtonRandomName})`
+                CreatePanle("${file}", "${file}")`
             })
             
-            const allFileContents = fs.readFileSync(__dirname + "/host/repos.data", 'utf-8')
-            allFileContents.split(/\r?\n/).forEach(line =>  {
-                // console.log(externalscriptrepo)
-                const ButtonRandomName = randomString(24)
-                externalscriptrepo = `${externalscriptrepo}\n
-                const ${ButtonRandomName} = document.createElement('button')
-                ${ButtonRandomName}.innerText = '${line}'
-                ${ButtonRandomName}.id = '${line}-Button'
+            // const allFileContents = fs.readFileSync(__dirname + "/host/repos.data", 'utf-8')
+            // allFileContents.split(/\r?\n/).forEach(line =>  {
+            //     // console.log(externalscriptrepo)
+            //     const ButtonRandomName = randomString(24)
+            //     externalscriptrepo = `${externalscriptrepo}\n
+            //     const ${ButtonRandomName} = document.createElement('button')
+            //     ${ButtonRandomName}.innerText = '${line.split(" : ")[1]}'
+            //     ${ButtonRandomName}.id = '${line.split(" : ")[0]}-Button'
                 
-                ${ButtonRandomName}.addEventListener("click", function() {
-                    window.location.href = "${line}";
-                })
+            //     ${ButtonRandomName}.addEventListener("click", function() {
+            //         window.location.href = "${line.split(" : ")[0]}";
+            //     })
                 
-                conr.appendChild(${ButtonRandomName})`
-            })
+            //     conr.appendChild(${ButtonRandomName})`
+            // })
 
-            externalscriptrepo = `${externalscriptrepo}\n</script>`
-            res.send(pagesource + externalscript + "\n</script>" + externalscriptrepo)
+            // externalscriptrepo = `${externalscriptrepo}\n</script>`
+            res.send(pagesource + "<script>" + externalscript + "</script>") //  + "\n</script>" + externalscriptrepo
         })
     }
 })
