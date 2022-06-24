@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <!-- <link rel="stylesheet" type="text/css" href="css/spacer.css" /> -->
+        <!-- <link href="clickable.css"  type="text/css" rel="stylesheet" /> -->
+
+        <script>
+            function CreatePanle(Title, URL) {
+                const DivA = document.createElement('div')
+                DivA.id = 'CS S1 E1.mp4-Button';
+                DivA.classList.add("card");
+                DivA.onclick = function(event) {
+                    location.href = URL;
+                }
+
+                const FirstSpacer = document.createElement("div")
+                FirstSpacer.classList.add("space-7")
+
+                const MovieTitle = document.createElement("b")
+                MovieTitle.innerText = Title;
+
+                const SecondSpacer = document.createElement("div")
+                SecondSpacer.classList.add("space-5")
+
+                const Thumbnail = document.createElement("img")
+                Thumbnail.classList.add("ImageThumbNail")
+                Thumbnail.src = "css/404TN.png"
+
+                const ThirdSpacer = document.createElement("div")
+                ThirdSpacer.classList.add("space-2")
+
+                const TimeStamp = document.createElement("b")
+                TimeStamp.innerText = 'NaNa';
+
+                const FakeButton = document.createElement("button")
+                FakeButton.classList.add("FakeButton")
+
+                const PlayButtonImage = document.createElement("img")
+                PlayButtonImage.src = "css/Play.png"
+                PlayButtonImage.classList.add("PlayButtonImage")
+
+                const ForthSpacer = document.createElement("div")
+                ForthSpacer.classList.add("space-2")
+
+                DivA.appendChild(FirstSpacer);
+                DivA.appendChild(MovieTitle);
+                DivA.appendChild(SecondSpacer);
+                DivA.appendChild(Thumbnail);
+                DivA.appendChild(ThirdSpacer);
+                DivA.appendChild(TimeStamp);
+                TimeStamp.appendChild(FakeButton);
+                FakeButton.appendChild(PlayButtonImage);
+                DivA.appendChild(ForthSpacer);
+                document.getElementById("MOVIES").appendChild(DivA);
+            }
+        </script>
+    </head>
+    
+    <body>
+        <div class="faketopbar">
+            <nav class="topbar">
+                <b class="navtitle">Hoist ⚓</b>
+                <b class="pa">-</b>
+                <a href="/"><b>Home</b></a>
+                <b class="pa">-</b>
+                <a href="/Movies"><b>Movies</b></a>
+                <b class="pa">-</b>
+                <a href="/Shows"><b>Shows</b></a>
+                <b class="pa">-</b>
+                <a href="/Repos"><b>Repos</b></a>
+                <b class="pa">-</b>
+                <a href="/Settings"><b>Settings</b></a>
+    
+                <!-- <b class="pa">-</b> -->
+                <!-- <a href="https://github.com/SK3-4121/"><b>Website by SK3</b></a> -->
+            </nav>
+        </div>
+        
+        <div class="Cont-Title-Box">
+            <div class="space-10"></div>
+            <b>Movies:</b>
+            <!-- <div class="space-10"></div> -->
+        </div>
+
+        <div class="moviecontainer" id="MOVIES">
+
+        </div>
+    </body>
+</html>
