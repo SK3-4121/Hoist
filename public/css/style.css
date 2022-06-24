@@ -1,0 +1,172 @@
+* {
+    background-color: #121420;
+    margin: 0;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    /* overflow: hidden; */
+}
+
+b {
+    color: white;
+    background: transparent;
+}
+
+a {
+    background: transparent;
+    text-decoration: none;
+}
+
+img {
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    width: 30px;
+    position: relative;
+    top: 3px;
+}
+
+.ImageThumbNail {
+    width: 125px;
+}
+
+.SearchBox {
+    width: 50%;
+    border: none;
+    border-radius: 5px;
+}
+
+/* .faketopbar { */
+    /* position: fixed; */
+/* } */
+
+.topbar {
+    padding-top: 8px;
+    padding-left: 30px;
+    background-color: #0a0c1a;
+    width: auto;
+    height: 35px;
+    position: relative;
+}
+
+.pa {
+    position: relative;
+    width: 10px;
+}
+
+.Cont-Title-Box {
+    display: grid;
+    justify-items: center;
+}
+
+.navtitle {
+    font-size: 18px;
+}
+
+.PlayButtonImage {
+    width: 100%;
+    background-color: transparent;
+}
+
+.moviecontainer {
+    padding: 1% 1% 1% 1%;
+    display: flex;
+    grid-auto-flow: column;
+    grid-column-gap: 1%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: scroll;
+}
+
+.descriptioncontainer {
+    padding: 1% 1% 1% 1%;
+    display: flex;
+    grid-auto-flow: column;
+    grid-column-gap: 1%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    box-sizing: border-box;
+    background-color: #121420;
+    /* width: auto; */
+    height: 530px;
+}
+
+.TitleBoxForDescBox {
+    display: grid;
+    background-color: transparent;
+    justify-items: center;
+}
+
+.DescBox {
+    background-color: #0a0c1a;
+    border-radius: 5px;
+}
+
+.card {
+    display: grid;
+    justify-items: center;
+    background-color: #0a0c1a;
+    border-radius: 5px;
+    width: 150px;
+    cursor: pointer;
+}
+
+.timestamp {
+    height: 100%;
+    position: relative;
+}
+
+.space-10 {
+    background-color: transparent;
+    height: 10px;
+}
+
+.space-9 {
+    background-color: transparent;
+    height: 9px;
+}
+
+.space-8 {
+    background-color: transparent;
+    height: 8px;
+}
+
+.space-7 {
+    background-color: transparent;
+    height: 7px;
+}
+
+.space-6 {
+    background-color: transparent;
+    height: 6px;
+}
+
+.space-5 {
+    background-color: transparent;
+    height: 5px;
+}
+
+.space-4 {
+    background-color: transparent;
+    height: 4px;
+}
+
+.space-3 {
+    background-color: transparent;
+    height: 3px;
+}
+
+.space-2 {
+    background-color: transparent;
+    height: 2px;
+}
+
+.space-1 {
+    background-color: transparent;
+    height: 1px;
+}
